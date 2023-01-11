@@ -1,7 +1,7 @@
 import {getPreferenceValues, showToast, Toast, Cache} from '@raycast/api';
 import fetch from 'node-fetch';
 import {paperlessDocumentTypes, paperlessDocumentTypesResponse} from '../models/paperlessResponse.model';
-import { Preferences } from '../models/preferences.model';
+import {Preferences} from '../models/preferences.model';
 
 const {paperlessURL}: Preferences = getPreferenceValues();
 const {apiToken}: Preferences = getPreferenceValues();
@@ -20,7 +20,7 @@ export const fetchDocumentTypes = async (): Promise<paperlessDocumentTypesRespon
         await cacheDocumentTypes(types.results);
         return types;
     } catch (error) {
-        showToast(Toast.Style.Failure, `Could not fetch documents types ${error}`);
+        await showToast(Toast.Style.Failure, `Could not fetch documents types ${error}`);
         return Promise.reject([]);
     }
 };
